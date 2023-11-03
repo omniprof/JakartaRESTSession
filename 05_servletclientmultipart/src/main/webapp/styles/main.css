@@ -1,0 +1,47 @@
+/* The styles for the elements */
+body { 
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 125%;
+    margin-left: 2em;
+    margin-right: 2em;
+    width: 800px;
+}
+h1 {     
+    font-size: 200%;
+    color: teal;
+    margin-bottom: .5em;
+}
+label {
+    float: left;
+    width: 15em;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+}
+input[type="text"], input[type="number"], input[type="submit"] {  /* An attribute selector */
+    width: 9em;
+    margin-left: 0.5em;    
+    margin-bottom: 0.5em;
+    text-align: right;
+    font-size: 125%;
+}
+
+input[type="submit"] {  /* An attribute selector */
+    width: 6em;
+    margin-left: 0.5em;    
+    margin-bottom: 0.5em;
+    text-align: center;
+    font-size: 125%;
+    color: teal;
+}
+
+br {
+    clear: both;
+}
+
+/* The styles for the classes */
+.pad_top {
+    padding-top: 0.25em;
+}
+.margin_left {
+    margin-left: 0.5em;
+}

@@ -1,0 +1,18 @@
+<web-app version="6.0"
+	xmlns="https://jakarta.ee/xml/ns/jakartaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+        <!-- In place of a class that adds web service classes to a list, here 
+             we declare the jakarta.ws.rs.core.Application servlet that is in 
+             the Jakarta framework. The @ApplicationPath becomes the 
+             <url-Pattern>. The server will scan the project for all classes 
+             that have an @Path annotation and creates the list of services it 
+             will make available. -->
+	<servlet>
+		<servlet-name>jakarta.ws.rs.core.Application</servlet-name>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jakarta.ws.rs.core.Application</servlet-name>
+		<url-pattern>/services/*</url-pattern>
+	</servlet-mapping>
+</web-app>

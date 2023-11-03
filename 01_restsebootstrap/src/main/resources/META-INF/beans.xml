@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Once upon a time you needed to declare all classes you wanted subject to CDI 
+     in this file. The existence of this file turns on CDI. How it determines if 
+     a bean will be subject to CDI is done based on the bean-discovery-mode that 
+     can be annotated, all, or none. The choice of annotated is considered the 
+     best practice. -->
+<beans xmlns="https://jakarta.ee/xml/ns/jakartaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/beans_4_0.xsd"
+  bean-discovery-mode="annotated" version="4.0">
+</beans>

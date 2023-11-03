@@ -1,0 +1,57 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- pom.xml January 2018 version 1.1 -->
+
+    <!-- Maven version of the xml document currently only 4.0.0 is valid -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- The GAV consists of an arbitrary descriptor that is usually in the
+    form of a reverse domain name. -->
+    <groupId>com.eclipse</groupId>
+
+    <!-- This is the name given to the packaged build -->
+    <artifactId>04_JSFClient</artifactId>
+
+    <!-- The version of the build. Any value is valid though a number and a
+    string are common. SNAPSHOT means a project under development. FINAL or no
+    text is commonly used to refer to a stable production version -->
+    <version>0.1-SNAPSHOT</version>
+
+    <!-- Default value is jar but may be war or ear -->
+    <packaging>war</packaging>
+
+    <!-- A description of the program -->
+    <description>Example of a single JSF page application</description>
+
+    <!-- properties are values that plugins can use by refering to the tag name.-->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.release>17</maven.compiler.release>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <jakartaee-api.version>10.0.0</jakartaee-api.version>
+    </properties>
+
+    <dependencies>
+        <!-- We only need the Jakarta EE API dependency because all required 
+             libraries are part of GlassFish and so do not require to be added 
+             to the project's war file. -->
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
+            <version>${jakartaee-api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- Information for compiling, testing and packaging are define here -->
+    <build>
+        <!-- Goals may be set in the IDE or the pom IDE or CLI goals override the
+        defaultGoal -->
+        <defaultGoal>clean verify</defaultGoal>
+        <finalName>${project.artifactId}</finalName>
+    </build>
+</project>
+
+

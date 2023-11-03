@@ -1,0 +1,32 @@
+01:
+CLI-GET All OS
+curl -i http://localhost:8080/services/hello
+curl -1 http://localhost:8080/services/hello?name=Ken
+curl -i "http://localhost:8080/services/compound?principal=100&annualInterestRate=0.05&compoundPerTimeUnit=12&time=5"
+
+CLI-POST All OS
+curl -i -X POST http://localhost:8080/services/hello
+curl -i -X POST http://localhost:8080/services/hello?name=Ken
+curl -i -X POST "http://localhost:8080/services/compound?principal=100&annualInterestRate=0.05&compoundPerTimeUnit=12&time=5"
+
+Browser:
+http://localhost:8080/services/hello?name=Ken
+http://localhost:8080/services/compound?principal=100&annualInterestRate=0.05&compoundPerTimeUnit=12&time=5
+
+02:
+CLI-GET All OS
+curl -i http://localhost:8080/02_RestServer/services/hello
+curl -1 http://localhost:8080/02_RestServer/services/hello?name=Ken
+curl -i "http://localhost:8080/02_RestServer/services/compound?principal=100&annualInterestRate=0.05&compoundPerTimeUnit=12&time=5"
+
+Browser:
+http://localhost:8080/services/hello?name=Ken
+http://localhost:8080/services/compound?principal=100&annualInterestRate=0.05&compoundPerTimeUnit=12&time=5
+
+CLI-POST
+Linux/MacOS
+curl -i -X POST --header "Content-Type: application/json" --data '{ "principal": 100.00,"annualInterestRate": 0.05, "compoundPerTimeUnit": 12.0, "time": 5.0, "result": "0.0" }' http://localhost:8080/02_RestServer/services/compound
+
+Windows
+curl -i -X POST --header "Content-Type: application/json" --data "{ \"principal\": 100.00, \"annualInterestRate\": 0.05, \"compoundPerTimeUnit\": 12.0, \"time\": 5.0, \"result\": \"0.0\" }" http://localhost:8080/02_RestServer/services/compound
+

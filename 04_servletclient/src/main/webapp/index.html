@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>)04 HTML Form</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="styles/main.css" type="text/css"/>
+    </head>
+        
+    <body>
+        <h1>04 - Calculate Compound Interest</h1>
+        <p>Fill in the form and click on Calculate.</p>
+        <form action="ServletClient" method="get">
+            
+            <label for="principal" class="pad_top">Principal:</label>
+            <input type="number" id="principal" name="principal" step="any" required/>
+            <br/>
+            <label for="annualInterestRate" class="pad_top">Annual Interest Rate:</label>
+            <input type="number" id="annualInterestRate" name="annualInterestRate" step="any" required/>
+            <br/>
+            <label for="compoundPerTimeUnit" class="pad_top">Compound Per Time Unit:</label>
+            <input type="number" id="compoundPerTimeUnit" name="compoundPerTimeUnit" step="any" required/>
+            <br/>
+            <label for="time" class="pad_top">Time:</label>
+            <input type="number" id="time" name="time" step="any" required/>
+            <br/>
+            <label for="result" class="pad_top">Result:</label>
+            <input type="text" id="result" name="result" readonly/>
+            <br/>
+            <input type="submit" value="Calculate"/>
+        </form>    
+    </body>
+</html>
+

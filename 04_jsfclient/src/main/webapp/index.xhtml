@@ -1,0 +1,55 @@
+<!DOCTYPE xhtml PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:faces="jakarta.faces"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html">
+
+    <h:head>
+        <title>#{msgs.title}</title>
+        <h:outputStylesheet library="css" name="main.css"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h1>#{msgs.heading}</h1>
+
+            <h:panelGrid columns="2" >
+                <h:outputLabel value="&#160;"/>
+                <h:message id = "principalError" for="principalValue" style="white-space:nowrap; color:red; font-size: 100%;"/>
+                <h:outputLabel value="#{msgs.principal}" for="principalValue" />
+                <h:inputText value="#{compoundBean.principal}" id="principalValue" converterMessage="#{msgs.invalidInput}" >
+                    <f:ajax event="blur" render="principalError" />
+                </h:inputText>
+
+                <h:outputLabel value="&#160;"/>
+                <h:message id="annualInterestRateError" for="annualInterestRateValue"  style="white-space:nowrap; color:red; font-size: 100%; " />
+                <h:outputLabel value="#{msgs.annualInterestRate}" for="annualInterestRateValue"/>
+                <h:inputText value="#{compoundBean.annualInterestRate}" id="annualInterestRateValue"  converterMessage="#{msgs.invalidInput}" >
+                    <f:ajax event="blur" render="annualInterestRateError" />
+                </h:inputText>
+
+                <h:outputLabel value="&#160;"/>
+                <h:message id="compoundPerTimeUnitError" for="compoundPerTimeUnitValue"  style="white-space:nowrap;  color:red; font-size: 100%;" />
+                <h:outputLabel value="#{msgs.compoundPerTimeUnit}" for="compoundPerTimeUnitValue" />
+                <h:inputText value="#{compoundBean.compoundPerTimeUnit}" id="compoundPerTimeUnitValue" converterMessage="#{msgs.invalidInput}" >
+                    <f:ajax event="blur" render="compoundPerTimeUnitError" />
+                </h:inputText>
+
+                <h:outputLabel value="&#160;"/>
+                <h:message id="timeError" for="timeValue"  style="white-space:nowrap;  color:red; font-size: 100%;" />
+                <h:outputLabel value="#{msgs.time}" for="timeValue" />
+                <h:inputText value="#{compoundBean.time}" id="termValue" converterMessage="#{msgs.invalidInput}" >
+                    <f:ajax event="blur" render="timeError" />
+                </h:inputText>
+
+                <h:outputLabel value="&#160;"/>
+                <h:outputLabel value="&#160;"/>
+                <h:outputLabel value="#{msgs.result}" for="resultValue"/>
+                <h:inputText value="#{compoundBean.result}" readonly="true" id="resultValue"/>
+
+                <h:commandButton type="submit" action="#{compoundServiceClient.callCompoundService(compoundBean)}" value="#{msgs.submit}"  styleClass="btn" />
+                <h:commandButton type="reset" value="#{msgs.clear}" styleClass="btn2" >
+                    <f:ajax event="click" execute="@this" render="@form" />
+                </h:commandButton>
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>

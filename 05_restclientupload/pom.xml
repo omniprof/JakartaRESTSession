@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+		           http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- Maven version of the xml document.
+    Currently only 4.0.0 is valid -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Maven projects are identified by their GAV. The groupId (G) is first, 
+    the artifactId (A) is second, and the version (V) is third. The groupId is 
+    usually a company's domain name reversed. If you do not have a domain then 
+    just use your name as I have (I do own kenfogel.com) -->
+    <groupId>com.eclipse</groupId>
+
+    <!-- This is the name given to the packaged build -->
+    <artifactId>05_RestClientUpload</artifactId>
+
+    <!-- The version of the build. Any value is valid though a number and a
+    string are common. SNAPSHOT means a project under development. FINAL or no
+    text is commonly used to refer to a stable production version -->
+    <version>0.1-SNAPSHOT</version>
+
+    <!-- Values can be:
+    jar - java archive
+    war - web archive
+    ear - enterprise archive -->
+    <packaging>jar</packaging>
+    
+    <!-- The display name of the project -->
+    <name>${project.artifactId}</name>
+
+    <!-- A description of the program -->
+    <description>A basic desktop web service client to upload a file</description>
+
+    <!-- properties are values that plugins can use by refering to the tag name. -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.release>17</maven.compiler.release>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <exec.mainClass>com.eclipse.restclient.RestClient</exec.mainClass>
+    </properties>
+    
+    <!-- Here we list the libraries that must be downloaded and added to your 
+    project to be able to use them in your program -->
+    <dependencies>
+        <dependency>
+            <!-- This dependency handles MessageBodyWriters. It must be first -->
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-multipart</artifactId>
+            <version>3.1.3</version>
+        </dependency>
+        <dependency>
+            <!-- Client to access a service -->
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>3.1.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.inject</groupId>
+            <artifactId>jersey-cdi2-se</artifactId>
+            <version>3.1.3</version>
+        </dependency>
+    </dependencies> 
+    
+    <!-- Here we list the plugin libraries that Maven may use to build the 
+    project. These are not added to your program but only used by Maven. -->
+    <build>
+        <!-- Maven must be told what you expect it to do and these are called goals. 
+        'clean' deletes the target folder forcing all code to be compiled. 
+        'compile' goes through the source code tree and compiles every source 
+                    code file and writes the bytecode to the target folder.
+        'test' runs all unit tests that are in the project 
+        'package' combines all the files into a jar package.
+        'exec:java' will execute your program in the same JVM that Maven is running in.
+        'exec:exec" will execute your program is a new JVM. -->
+        <defaultGoal>clean verify exec:exec</defaultGoal>
+        <plugins>
+            <plugin>
+                <!--  Enables Maven to run the program as long as any previous 
+                goals, such as compile or test, were all successful. -->
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <mainClass>${exec.mainClass}</mainClass>
+                    <arguments>
+                        <argument>-jar</argument>
+                        <!-- As Maven will produce an assembled and an 
+                        unassembled jar file the following argument selects 
+                        the assembled jar to be run by Maven -->
+                        <argument>target/${project.artifactId}.jar</argument>
+                    </arguments>
+                    <!-- The type of executable -->
+                    <executable>java</executable>
+                </configuration>
+            </plugin>   
+            <plugin>
+                <!-- This plugin assembles all the dependencies and the compiled
+                jar into a single executable file. -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>${exec.mainClass}</mainClass>
+                                </manifest>
+                            </archive>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                            <finalName>${project.artifactId}</finalName>
+                            <appendAssemblyId>false</appendAssemblyId>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
