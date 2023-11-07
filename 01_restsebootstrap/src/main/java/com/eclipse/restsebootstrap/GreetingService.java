@@ -1,3 +1,4 @@
+
 package com.eclipse.restsebootstrap;
 
 import jakarta.ws.rs.GET;

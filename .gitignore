@@ -1,0 +1,9 @@
+/01_restsebootstrap/target/
+/02_restserver/target/
+/03_restserver/target/
+/03_restclient/target/
+/04_restserver/target/
+/04_jsfclient/target/
+/04_servletclient/target/
+/05_servletclientmultipart/target/
+/05_multipart_server/target/
